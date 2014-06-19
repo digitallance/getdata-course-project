@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Getting and Cleaning Data</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>Getting and Cleaning Data</h1>
+
+<h3>Course Project Code Boook</h3>
+
+<p>The code book describes the data, variables, transformations and work performed to clean up the data and produce a tidy dataset.</p>
+
+<p>The file &ldquo;run_analysis.R&rdquo; perorms all steps of downloading, cleaning and transformin of the data.</p>
+
+<h2>Data description</h2>
+
+<p>Human Activity Recognition Using Smartphones Data Set described 
+<a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">here</a>.</p>
+
+<h4>Original data files location:</h4>
+
+<p><a href="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip">https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip</a></p>
+
+<p>Dataset was downloaded and unzipped to working directory producing a directory &ldquo;UCI HAR Dataset&rdquo; with separate trainint and test data directories. </p>
+
+<h2>Variables</h2>
+
+<p>The data is distributed across multiple files with mapping between 30 &ldquo;subjects&rdquo;, 6 &ldquo;activities&rdquo; and 561 &ldquo;measurements&rdquo; obtained during each activity for each subject.</p>
+
+<h2>Transformations</h2>
+
+<p>The training data consists of 21 subjects with a total of 7352 measurement rows, while the test data had 9 subjects and 2947 measurement rows. A merged dataset was created by combining the different data files into a single &ldquo;merged&rdquo; table including subject ids, activity names and a subset of measurements consisting only of mean and standard deviation measurements. The colums were filtered by applyng a regular expression filter on measurement column names. This retained 66 individual measurements form the original 561.</p>
+
+<p>The activity ids were replaced with descriptive activity names in the &ldquo;Activity&rdquo; column. All column names reflect the measurement type or row attribute such as subject id or activity type. This represents a merged dataset for 30 subjects, 6 activiy types and 10299 measurement rows. The rows were sorted on subject id and activity type.</p>
+
+<h2>Tidy dataset generation</h2>
+
+<p>A tidy dataset with measurement averages for each subject and activity was created by aggregating means for each measurement column for each subject and activity type. This dataset consisted of 180 rows of 66 measurements for all 30 subjects and 6 activity types:</p>
+
+<ul>
+<li>LAYING</li>
+<li>SITTING</li>
+<li>STANDING</li>
+<li>WALKING</li>
+<li>WALKING_DOWNSTAIRS</li>
+<li>WALKING_UPSTAIRS</li>
+</ul>
+
+<p>A CSV file (&ldquo;HAR_data_tidy.csv&rdquo;) was created to archive the dataset.</p>
+
+</body>
+
+</html>
+
